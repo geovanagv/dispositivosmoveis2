@@ -1,51 +1,51 @@
 import React, { useState } from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
-
-const fortunes = [
-  "A sorte está do seu lado!",
-  "Grandes coisas estão por vir.",
-  "Acredite em si mesmo.",
-  "O sucesso é uma jornada, não um destino.",
-  "Você é mais forte do que pensa.",
-  "O otimismo é a chave para o sucesso.",
-  "Hoje é o primeiro dia do resto de sua vida.",
-  "Aja como se o que você faz fizesse diferença. Isso faz!",
-  "A vida é um presente, aproveite cada momento.",
-  "O universo sempre conspira a seu favor.",
-];
+import { View, Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 export default function App() {
-  
-  const [fortune, setFortune] = useState("");
-  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [img, setImg] = useState(require("../dispositivosmoveis/assets/biscoitofechado.jpeg"));
+  const [textFrase, setTextFrase] = useState("");
 
-  const breakCookie = () => {
-    const randomIndex = Math.floor(Math.random() * fortunes.length);
-    setFortune(fortunes[randomIndex]);
-    setButtonDisabled(true);
-  };
+  let frases = [
+    "Siga os bons e aprenda com eles.",
+    "O bom-senso vale mais do que muito conhecimento.",
+    "O riso é a menor distância entre duas pessoas.",
+    "Deixe de lado as preocupações e seja feliz.",
+    "Realize o óbvio, pense no improvável e conquiste o impossível.",
+    "Acredite em milagres, mas não dependa deles.",
+    "A maior barreira para o sucesso é o medo do fracasso.",
+  ];
 
-  const resetCookie = () => {
-    setFortune("");
-    setButtonDisabled(false);
-  };
+  function quebraBiscoito() {
+    let numeroAleatorio = Math.floor(Math.random() * frases.length);
+    setTextFrase(' "' + frases[numeroAleatorio] + '" ');
+    setImg(require("../dispositivosmoveis/assets/biscoitoaberto.jpeg"));
+  }
+
+  function reiniciarBiscoito() {
+    setImg(require("../dispositivosmoveis/assets/biscoitofechado.jpeg"));
+    setTextFrase("");
+  }
 
   return (
     <View style={styles.container}>
-      <Image
-        source={require("./bi")}
-        style={styles.cookieImage}
-      />
-      <Text style={styles.fortuneText}>{fortune}</Text>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={breakCookie}
-        disabled={buttonDisabled}
-      >
-        <Text style={styles.buttonText}>Quebrar Biscoito</Text>
+      <Image source={img} style={styles.img} />
+
+      <Text style={styles.textoFrase}>{textFrase}</Text>
+      <TouchableOpacity style={styles.botao} onPress={quebraBiscoito}>
+        <View style={styles.btnArea}>
+          <Text style={styles.btnTexto}>Quebrar Biscoito</Text>
+        </View>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.resetButton} onPress={resetCookie}>
-        <Text style={styles.resetButtonText}>Reiniciar Biscoito</Text>
+
+      <TouchableOpacity
+        style={[styles.botao, { marginTop: 15, borderColor: "#000000" }]}
+        onPress={reiniciarBiscoito}
+      >
+        <View style={styles.btnArea}>
+          <Text style={[styles.btnTexto, { color: "#000000" }]}>
+            Reiniciar Biscoito
+          </Text>
+        </View>
       </TouchableOpacity>
     </View>
   );
@@ -56,33 +56,33 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#f5f5f5",
   },
-  cookieImage: {
-    width: 200,
-    height: 200,
+  img: {
+    width: 230,
+    height: 230,
   },
-  fortuneText: {
-    fontSize: 18,
-    marginTop: 20,
+  textoFrase: {
+    fontSize: 20,
+    color: "#000000",
+    margin: 30,
+    fontStyle: "normal",
     textAlign: "center",
   },
-  button: {
-    backgroundColor: "#007AFF",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-    marginTop: 20,
+  botao: {
+    width: 230,
+    height: 50,
+    borderColor: "#000000",
+    borderWidth: 2,
+    borderRadius: 25,
   },
-  buttonText: {
-    color: "white",
+  btnArea: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  btnTexto: {
     fontSize: 18,
-  },
-  resetButton: {
-    marginTop: 20,
-  },
-  resetButtonText: {
-    color: "#007AFF",
-    fontSize: 18,
+    fontWeight: "bold",
+    color: "#000000",
   },
 });
