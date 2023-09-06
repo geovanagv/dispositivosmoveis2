@@ -6,12 +6,12 @@ export default function App() {
   const [textFrase, setTextFrase] = useState("");
 
   let frases = [
-    "Siga os bons e aprenda com eles.",
+    "O sucesso é uma soma de pequenos esforços repetidos dia após dia.",
     "O bom-senso vale mais do que muito conhecimento.",
     "O riso é a menor distância entre duas pessoas.",
-    "Deixe de lado as preocupações e seja feliz.",
+    "Você é mais capaz do que imagina, e suas conquistas são ilimitadas.",
     "Realize o óbvio, pense no improvável e conquiste o impossível.",
-    "Acredite em milagres, mas não dependa deles.",
+    "A persistência é o caminho do êxito.",
     "A maior barreira para o sucesso é o medo do fracasso.",
   ];
 
